@@ -1,26 +1,23 @@
-
-import './App.css'; 
-import React, { useMemo, useState } from 'react';
-
+import React,{useCallback, useState} from "react";
+import ChildA from "./component/childA";
 const App = () => {
-  const[add,setAdd]=useState(0);
-  const[minus,setMinus]=useState(100);
 
-  const mul = useMemo( function multiply () {
-    console.log("***");
-    return add*10;
-  },[add])
+  const [add,setAdd] = useState(0);
+  const[count,setCount]= useState(0);
 
-  return (
-    <div className='App'>
-      <h1>usememo</h1>
-      {mul}
-      <button onClick={()=>setAdd(add+1)}>Addition</button>
-      <span>{add}</span> <br/>
+  const learning = useCallback(()=>{
 
-      <button onClick={()=>setMinus(minus-1)}>Subtraction</button>
-      <span>{minus}</span>
+  } ,[count])
+  return(
+    <div className="App">
+      <ChildA learning={learning}count={count}/>
+      <h1>learning useCallback</h1>
+      <h1>{add}</h1>
+      <button onClick={()=>setAdd(add+1)}>Adittion</button>
+      <h1>{count}</h1>
+      <button onClick={()=>setCount(count+3)}>count</button>
+
     </div>
-  );
+  )
 }
-export default App ;
+export  default App;
